@@ -1,0 +1,151 @@
+-- Note run project first so that all tables will get created	
+-- DUMMY Data to insert into MySQL
+
+use dmart;
+
+INSERT INTO customer (name, email, phone, address, location) 
+VALUES ('Ram Kumar', 'kumar@gmail.com', '1234567890', 'mulund-east', 'Mumbai');
+
+INSERT INTO customer (name, email, phone, address, location) 
+VALUES ('Sudha More', 'sudha@gmail.com', '9876543210', 'deccan corner', 'Pune');
+
+INSERT INTO customer (name, email, phone, address, location) 
+VALUES ('Sunil Tripathi', 'sunil@gmail.com', '4561237890', 'vardhman nagar', 'Nagpur');
+
+
+
+INSERT INTO product (name, description, price) 
+VALUES ('Laptop', 'High-performance laptop', 1000.00);
+
+INSERT INTO product (name, description, price) 
+VALUES ('Smartphone', 'Latest smartphone model', 500.00);
+
+INSERT INTO product (name, description, price) 
+VALUES ('Headphones', 'Wireless headphones', 100.00);
+
+
+
+INSERT INTO inventory ( product_id,  demand, supply, available, location) 
+VALUES ( 1, 4, 7, 3, 'Mumbai');
+
+INSERT INTO inventory ( product_id,  demand, supply, available, location) 
+VALUES (2,  10, 15, 5, 'Pune');
+
+INSERT INTO inventory ( product_id,  demand, supply, available, location) 
+VALUES ( 3, 10, 12, 2, 'Nagpur');
+
+
+
+INSERT INTO orders (customer_id, order_date, amount, location) 
+VALUES (1, '2024-03-30', 200.00, 'Mumbai');
+
+INSERT INTO orders (customer_id, order_date, amount, location) 
+VALUES (2, '2024-03-31', 150.00, 'Pune');
+
+INSERT INTO orders (customer_id, order_date, amount, location) 
+VALUES (3, '2024-04-01', 120.00, 'Nagpur');
+
+
+
+INSERT INTO order_details (order_id, product_id, quantity, unit_price) 
+VALUES (1, 1, 2, 1000.00);
+
+INSERT INTO order_details (order_id, product_id, quantity, unit_price) 
+VALUES (2, 2, 3, 500.00);
+
+INSERT INTO order_details (order_id, product_id, quantity, unit_price) 
+VALUES (3, 3, 4, 100.00);
+
+
+-- Insert dummy data into the product table
+INSERT INTO product (name, description, price) VALUES
+('Ultra-thin Laptop', 'Ultra-thin and lightweight laptop for professionals', 1200),
+('Smartwatch', 'Smartwatch with health tracking and notification features', 300),
+('Bluetooth Speaker', 'Portable Bluetooth speaker for music on-the-go', 80),
+('Multi-purpose Cleaner', 'Multi-purpose cleaner for various cleaning tasks', 150),
+('Digital Camera', 'High-resolution digital camera for photography enthusiasts', 700),
+('Moisturizing Cream', 'Hydrating moisturizing cream for soft and smooth skin', 20),
+('Lipstick Set', 'Set of vibrant lipstick shades for every occasion', 15),
+('Eyeshadow Palette', 'Eyeshadow palette with a range of stunning colors', 25),
+('Facial Cleanser', 'Gentle facial cleanser to remove dirt and impurities', 10),
+('Mascara', 'Waterproof mascara for voluminous and long lashes', 12),('Laptop', 'High-performance laptop', 1000.00),
+('Smartphone', 'Latest smartphone model', 500.00),
+('Headphones', 'Wireless headphones', 100.00);
+
+
+
+-- Insert dummy data into the inventory table for Mumbai
+INSERT INTO inventory (demand, supply, available, location, product_id) VALUES
+(10, 20, 10, 'Mumbai', 7),
+(8, 15, 7, 'Mumbai', 8),
+(9, 18, 9, 'Mumbai', 9),
+(12, 25, 13, 'Mumbai', 10),
+(1	0, 20, 10, 'Mumbai', 11);
+
+-- Insert dummy data into the inventory table for Pune
+INSERT INTO inventory (demand, supply, available, location, product_id) VALUES
+(10, 20, 10, 'Pune', 7),
+(8, 15, 7, 'Pune', 8),
+(9, 18, 9, 'Pune', 9),
+(12, 25, 13, 'Pune', 10),
+(10, 20, 10, 'Pune', 11);
+
+-- Insert dummy data into the inventory table for Nagpur
+INSERT INTO inventory (demand, supply, available, location, product_id) VALUES
+(10, 20, 10, 'Nagpur', 7),
+(8, 15, 7, 'Nagpur', 8),
+(9, 18, 9, 'Nagpur', 9),
+(12, 25, 13, 'Nagpur', 10),
+(10, 20, 10, 'Nagpur', 11);
+
+
+
+-- Insert dummy data into the inventory table for Mumbai
+INSERT INTO inventory (demand, supply, available, location, product_id) VALUES
+(5, 10, (10 - 5), 'Mumbai', 4),   -- Detergent Powder
+(8, 15, (15-8 ), 'Mumbai', 5);   -- Ultra-thin Laptop
+
+-- Insert dummy data into the inventory table for Pune
+INSERT INTO inventory (demand, supply, available, location, product_id) VALUES
+(10, 5, (10-5), 'Pune', 4);  -- Detergent Powder
+
+-- Insert dummy data into the inventory table for Nagpur
+INSERT INTO inventory (demand, supply, available, location, product_id) VALUES
+(10, 5, (5), 'Nagpur', 4),   -- Detergent Powder
+(18, 9, (9), 'Nagpur', 6);   -- Smartwatch
+
+-- for product id 1
+
+-- INSERT INTO inventory (available, demand, location, supply, product_id)
+-- VALUES (5, 5, 'Mumbai', 10, 1);
+
+-- INSERT INTO inventory (available, demand, location, supply, product_id)
+-- VALUES (5, 5, 'Pune', 10, 1);
+
+-- INSERT INTO inventory (available, demand, location, supply, product_id)
+-- VALUES (5, 5, 'Nagpur', 10, 1);
+
+select * from customer ;
+
+select * from orders;
+
+select * from order_details;
+
+select * from inventory;
+
+select * from inventory where location='mumbai' and product_id in(1,7,10);
+
+INSERT INTO inventory (demand, supply, available, location, product_id) VALUES
+(0, 0, 500, 'Mumbai', 1),
+(0, 0, 700, 'Mumbai', 2),
+(0, 0, 900, 'Mumbai', 3),
+(0, 0, 1300, 'Mumbai', 4),
+(0, 0, 1000, 'Mumbai', 5),
+(0, 0, 1000, 'Pune', 6),
+(0, 0, 700, 'Pune', 7),
+(0, 0, 900, 'Pune', 8),
+(0, 0, 1300, 'Pune', 9),
+(0, 0, 1000, 'Pune', 10),
+(0, 0, 1000, 'Nashik', 11),
+(0, 0, 700, 'Nashik', 12),
+(0, 0, 900, 'Nashik', 13);

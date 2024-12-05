@@ -1,6 +1,8 @@
 package in.dmart.oms.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -9,12 +11,14 @@ import jakarta.persistence.Table;
 public class Customer {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int customer_id;
 	private String name;
 	private String email;
 	private int phone;
 	private String address;
 	private String location;
+	
 	public int getCustomer_id() {
 		return customer_id;
 	}
@@ -62,7 +66,7 @@ public class Customer {
 	}
 	public Customer() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	@Override
 	public String toString() {
