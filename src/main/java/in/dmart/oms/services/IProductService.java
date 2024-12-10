@@ -13,7 +13,7 @@ public interface IProductService {
 
 	Product updateProduct(int productId, Product product);
 
-	void deleteProduct(int productId);
+	boolean deleteProduct(int productId);
 
 	// other than CRUD
 	List<Product> getProductsByCustomerLocation(int customerId);

@@ -13,6 +13,6 @@ import in.dmart.oms.models.Product;
 public interface IProductRepository extends JpaRepository<Product, Integer> {
 
 	// Define custom query for getting products by customer location
-	@Query(value = "select * from product WHERE product_id IN (select prodcut_id from inventory WHERE location = :location)", nativeQuery = true)
+	@Query(value = "SELECT * FROM product WHERE product_id in (SELECT product_id FROM inventory WHERE location = :location)", nativeQuery = true)
 	List<Product> findProductsByCustomerLocation(@Param("location") String location);
 }

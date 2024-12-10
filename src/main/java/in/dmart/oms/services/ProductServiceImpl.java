@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import in.dmart.oms.exception.CustomerNotFoundException;
 import in.dmart.oms.models.Customer;
 import in.dmart.oms.models.Product;
 import in.dmart.oms.repository.ICustomerRepository;
@@ -54,8 +55,15 @@ public class ProductServiceImpl implements IProductService {
 	}
 
 	@Override
-	public void deleteProduct(int productId) {
-		productRepository.deleteById(productId);
+	public boolean deleteProduct(int productId) {
+		Optional<Product> product = productRepository.findById(productId);
+
+		if (product.isPresent()) {
+			productRepository.deleteById(productId);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
@@ -69,7 +77,7 @@ public class ProductServiceImpl implements IProductService {
 			return productRepository.findProductsByCustomerLocation(location);
 
 		} else {
-			return null;
+			throw new CustomerNotFoundException("Customer with ID " + customerId + " not found.");
 		}
 	}
 
