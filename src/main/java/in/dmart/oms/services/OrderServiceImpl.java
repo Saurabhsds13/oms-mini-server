@@ -40,7 +40,7 @@ public class OrderServiceImpl implements IOrderService {
 	public Orders buyProducts(List<ProductPurchaseDTO> productPurchaseDTO, int customerId) {
 
 		boolean flag = false;
-		double amount = 0.0;
+		double amount = 0.00;
 		String location = null;
 
 		Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
@@ -71,7 +71,7 @@ public class OrderServiceImpl implements IOrderService {
 						.orElseThrow(() -> new RuntimeException("Product Not Found"));
 
 				Product product = newProduct;
-				amount = product.getPrice() * dto.getQuantity();
+				amount += product.getPrice() * dto.getQuantity();
 			}
 		}
 

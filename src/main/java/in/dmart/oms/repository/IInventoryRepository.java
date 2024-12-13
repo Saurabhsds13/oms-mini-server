@@ -10,6 +10,6 @@ import in.dmart.oms.models.Inventory;
 @Repository
 public interface IInventoryRepository extends JpaRepository<Inventory, Integer> {
 
-	@Query(value = "select * from inventory where productId =:productId and loaction =:location ", nativeQuery = true)
+	@Query(value = "select * from inventory where product_id =:productId and location =:location", nativeQuery = true)
 	Inventory findByProductIdAndLocation(@Param("productId") int productId, @Param("location") String location);
 }

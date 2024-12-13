@@ -36,3 +36,7 @@ report is : order and order details are working fine but the inventory having so
 go for the different method as we have for order and order_details
 
 DONE..!
+
+
+SQl DUMP CMD - mysqldump -u <username> -p <database_name> > <filename>.sql
+Sql Password
