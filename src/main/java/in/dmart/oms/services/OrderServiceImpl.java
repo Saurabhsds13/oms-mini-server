@@ -1,11 +1,13 @@
 package in.dmart.oms.services;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import in.dmart.oms.dto.ProductPurchaseDTO;
+import in.dmart.oms.exception.ProductNotFoundException;
 import in.dmart.oms.models.Customer;
 import in.dmart.oms.models.Inventory;
 import in.dmart.oms.models.OrderDetails;
@@ -18,6 +20,7 @@ import in.dmart.oms.repository.IOrderRepository;
 import in.dmart.oms.repository.IProductRepository;
 
 @Service
+@Transactional
 public class OrderServiceImpl implements IOrderService {
 
 	private final IInventoryRepository inventoryRepository;
@@ -39,85 +42,52 @@ public class OrderServiceImpl implements IOrderService {
 	@Override
 	public Orders buyProducts(List<ProductPurchaseDTO> productPurchaseDTO, int customerId) {
 
-		boolean flag = false;
-		double amount = 0.00;
-		String location = null;
+		Customer customer = customerRepository.findById(customerId)
+				.orElseThrow(() -> new RuntimeException("Customer Not Found"));
+		String location = customer.getLocation();
 
-		Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
-
-		if (optionalCustomer.isPresent()) {
-			Customer customer = optionalCustomer.get();
-			location = customer.getLocation();
-		}
+		double totalAmount = 0.0;
+		List<OrderDetails> orderDetailsList = new ArrayList<>();
 
 		for (ProductPurchaseDTO dto : productPurchaseDTO) {
 
 			Inventory inventory = inventoryRepository.findByProductIdAndLocation(dto.getProductId(), location);
-			if (inventory != null && inventory.getAvailable() >= dto.getQuantity()) {
-
-				flag = true;
-				// to change the demand quantity
-				int newDmand = inventory.getDemand() + dto.getQuantity();
-				inventory.setDemand(newDmand);
-
-				// to change available quantity
-				int newAvailable = inventory.getSupply() - newDmand;
-				inventory.setAvailable(newAvailable);
-
-				inventoryRepository.save(inventory);
-
-				// to set amount
-				Product newProduct = productRepository.findById(dto.getProductId())
-						.orElseThrow(() -> new RuntimeException("Product Not Found"));
-
-				Product product = newProduct;
-				amount += product.getPrice() * dto.getQuantity();
+			if (inventory == null || inventory.getAvailable() < dto.getQuantity()) {
+				throw new RuntimeException("Insufficient stock for product ID: " + dto.getProductId());
 			}
+			// Update inventory
+			inventory.setDemand(inventory.getDemand() + dto.getQuantity());
+			inventory.setAvailable(inventory.getAvailable() - dto.getQuantity());
+			inventory.setSupply(inventory.getSupply() - dto.getQuantity());
+			inventoryRepository.save(inventory);
+
+			// Fetch product
+			Product product = productRepository.findById(dto.getProductId())
+					.orElseThrow(() -> new ProductNotFoundException("Product Not Found"));
+			// Calculate order details and amount
+			OrderDetails orderDetails = new OrderDetails();
+			orderDetails.setProduct(product);
+			orderDetails.setQuantity(dto.getQuantity());
+			orderDetails.setUnit_price(product.getPrice());
+			orderDetailsList.add(orderDetails);
+
+			totalAmount += product.getPrice() * dto.getQuantity();
 		}
 
-		// Create Order
-		Orders order = createOrder(amount, customerId, location);
+		// Create Order (only one record per transaction)
+		Orders order = new Orders();
+		order.setAmount(totalAmount);
+		order.setLocation(location);
+		order.setCustomer(customer);
+		order = orderRepository.save(order);
 
-		// Create Order Details
-		if (flag) {
-			for (ProductPurchaseDTO dto : productPurchaseDTO) {
-				createOrderDetails(dto, order); // calls n time for every order line
-			}
+		// Save order details (multiple records per transaction)
+		for (OrderDetails orderDetails : orderDetailsList) {
+			orderDetails.setOrder(order);
+			orderDetailRepository.save(orderDetails);
 		}
 
 		return order;
 	}
 
-	// for order creation (only one record per transaction)
-	private Orders createOrder(double amount, int customerId, String location) {
-		Orders order = new Orders();
-		order.setAmount(amount);
-		order.setLocation(location);
-
-		Customer customer = customerRepository.findById(customerId)
-				.orElseThrow(() -> new RuntimeException("Customer Not Found"));
-		order.setCustomer(customer);
-		return order = orderRepository.save(order);
-
-	}
-
-	// for the orderDetails creations (multiple records per transaction)
-	private OrderDetails createOrderDetails(ProductPurchaseDTO dto, Orders order) {
-
-		OrderDetails orderDetails = new OrderDetails();
-		orderDetails.setQuantity(dto.getQuantity());
-
-		Product product = productRepository.findById(dto.getProductId())
-				.orElseThrow(() -> new RuntimeException("Product Not Found"));
-		if (product != null) {
-			orderDetails.setUnit_price(product.getPrice());
-		} else {
-			orderDetails.setUnit_price(0);
-		}
-
-		orderDetails.setProduct(product);
-		orderDetails.setOrder(order);
-		orderDetailRepository.save(orderDetails);
-		return orderDetails;
-	}
 }
