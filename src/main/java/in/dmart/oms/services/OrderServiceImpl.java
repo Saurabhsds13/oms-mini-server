@@ -90,4 +90,11 @@ public class OrderServiceImpl implements IOrderService {
 		return order;
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public List<Orders> getAllOrders() {
+		
+		return orderRepository.findAll();
+	}
+
 }
