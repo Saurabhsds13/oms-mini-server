@@ -1,0 +1,73 @@
+[33mcommit 37aabed698c8e36a3478d1d1827face0c3603d94[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Saurabhsds13 <saurabhsds13@gmail.com>
+Date:   Thu Dec 19 20:05:04 2024 +0530
+
+    Order Details Service Updated
+
+[33mcommit b9e499d30c0a914a58e120c3ba847eec84d34074[m[33m ([m[1;31morigin/master[m[33m)[m
+Merge: 88f1267 d56fddd
+Author: Saurabhsds13 <saurabhsds13@gmail.com>
+Date:   Thu Dec 19 11:00:58 2024 +0530
+
+    Merge branch 'master' of https://github.com/Saurabhsds13/IBM-OMS-CLONE
+    Controllers updated.
+
+[33mcommit 88f1267685c6d78a0746f3d18088c19ded8d2979[m
+Author: Saurabhsds13 <saurabhsds13@gmail.com>
+Date:   Thu Dec 19 11:00:33 2024 +0530
+
+    Added Controller method
+
+[33mcommit d56fdddd09edb705c714e49295551da0df2cdc9a[m
+Author: Saurabh Sonawane <saurabhsds13@gmail.com>
+Date:   Thu Dec 19 00:13:38 2024 +0530
+
+    updated SRS DOC
+
+[33mcommit 8f04f18220bda186b59b6c0a6a8ec005e3d843ab[m
+Author: Saurabh Sonawane <saurabhsds13@gmail.com>
+Date:   Wed Dec 18 23:52:48 2024 +0530
+
+    SRS Created
+
+[33mcommit c42465cdfb68c1ba41e441af955475e86a35f568[m
+Author: Saurabh Sonawane <saurabhsds13@gmail.com>
+Date:   Wed Dec 18 00:20:55 2024 +0530
+
+    Notes Updated
+
+[33mcommit 1cf6cd432238a7013ff8be286d6ac6921f7a9390[m
+Author: Saurabh Sonawane <saurabhsds13@gmail.com>
+Date:   Sun Dec 15 23:50:13 2024 +0530
+
+    Modified Order Server
+
+[33mcommit 19185500eb0df3ac5bcee1df1173efdd3e1b9102[m
+Author: Saurabh Sonawane <saurabh.sonawane@ael.in>
+Date:   Fri Dec 13 19:43:48 2024 +0530
+
+    minor fixes
+
+[33mcommit e0ec71ace49f5f28d5ec74e89eb2c42f720f1cb9[m[33m ([m[1;31morigin/merge[m[33m)[m
+Author: Saurabh Sonawane <saurabh.sonawane@ael.in>
+Date:   Tue Dec 10 18:21:38 2024 +0530
+
+    Exception handled
+
+[33mcommit 108ff0922114c343ab3ec9f1083758e492f55aa9[m
+Author: Saurabh Sonawane <saurabh.sonawane@ael.in>
+Date:   Thu Dec 5 17:02:19 2024 +0530
+
+    All the Services and controllers are implimented on basic level
+
+[33mcommit 358e56ae8527b7e90936d58a247074b52c5acedc[m
+Author: Saurabh Sonawane <saurabh.sonawane@ael.in>
+Date:   Mon Nov 11 18:03:26 2024 +0530
+
+    intial setup
+
+[33mcommit a0f13cbe43102c815ff19007e90078657db221dc[m
+Author: Saurabh Sonawane <saurabh.sonawane@ael.in>
+Date:   Mon Nov 11 15:52:50 2024 +0530
+
+    First Commit
