@@ -1,7 +1,6 @@
 package in.dmart.oms.services;
 
 import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import in.dmart.oms.models.OrderDetails;
@@ -19,4 +18,10 @@ public class OrderDetailsServiceImpl implements IOrderDetailsService {
 	public List<OrderDetails> getAllOrderDetails() {
 		return iorderDetailRepository.findAll();
 	}
+
+	@Override
+	public OrderDetails getOrderDetailById(int orderId) {
+		return iorderDetailRepository.findById(orderId).orElseThrow();
+	}
+
 }

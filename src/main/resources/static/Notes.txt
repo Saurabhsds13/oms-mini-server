@@ -1,4 +1,4 @@
-do you know OMS IBM software
+Do you know OMS IBM software
 
 
 I want to know its architecture and implementation because I want to create a clone sample project for my resume purpose to prepare for an interview experience Java developer role
@@ -7,12 +7,12 @@ I want to know its architecture and implementation because I want to create a cl
 
  IBM's Order Management System (OMS) is a software solution designed to help businesses manage and optimize their order and inventory processes. It's a key component of IBM's Sterling suite, which focuses on supply chain management. OMS is widely used for omnichannel order management, enabling seamless order processing, inventory visibility, and customer experience across multiple sales channels.
 
-Key Features of IBM OMS:
-Order Orchestration: Centralized order management to process and route orders across various channels.
-Inventory Management: Real-time inventory visibility and optimization to prevent stockouts or overstocking.
-Fulfillment Options: Support for in-store pickup, ship-from-store, and direct shipping.
-Omnichannel Support: Enables consistent order experience across online, in-store, mobile, and other platforms.
-Returns Management: Handles complex returns and exchanges, ensuring customer satisfaction.
+Key Features of IBM OMS :
+Order Orchestration : Centralized order management to process and route orders across various channels.
+Inventory Management: Real-time inventory visibility and optimization to prevent stocko-uts or overstocking.
+Fulfillment Options : Support for in-store pickup, ship-from-store, and direct shipping.
+Omnichannel Support : Enables consistent order experience across online, in-store, mobile, and other platforms.
+Returns Management : Handles complex returns and exchanges, ensuring customer satisfaction.
 Integration: Works with various ERP, CRM, and eCommerce systems.
 Scalability: Built to handle large-scale, complex operations for enterprises.
 
@@ -861,7 +861,7 @@ PCI DSS: Payment Card Industry Data Security Standard.
 References
 [Link to similar OMS SRS or industry references].
 IEEE 830 Standard.
-This document can serve as a foundation for your OMS project. It includes sufficient detail for initial discussions with stakeholders and can be expanded as the project evolves. Let me know if you’d like diagrams (DFDs, ERDs) or additional sections!
+
 
 DFD and ERD's Are remaning +++++++++++++++++++
 

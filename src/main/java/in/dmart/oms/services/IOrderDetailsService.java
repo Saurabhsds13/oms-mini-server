@@ -7,4 +7,6 @@ import in.dmart.oms.models.OrderDetails;
 public interface IOrderDetailsService {
 
 	public List<OrderDetails> getAllOrderDetails();
+
+	public OrderDetails getOrderDetailById(int orderId);
 }
